@@ -1,7 +1,6 @@
 var toolbar = [
   {name: 'bold', action: toggleBold},
   {name: 'italic', action: toggleItalic},
-  {name: 'code', action: toggleCodeBlock},
   '|',
 
   {name: 'quote', action: toggleBlockquote},
@@ -87,21 +86,17 @@ Editor.prototype.render = function(el) {
   }
 
   keyMaps["Enter"] = "newlineAndIndentContinueMarkdownList";
-  keyMaps['Tab'] = 'tabAndIndentContinueMarkdownList';
-  keyMaps['Shift-Tab'] = 'shiftTabAndIndentContinueMarkdownList';
 
   this.codemirror = CodeMirror.fromTextArea(el, {
     mode: 'markdown',
     theme: 'paper',
-    tabSize: '2',
     indentWithTabs: true,
     lineNumbers: false,
-    autofocus: true,
     extraKeys: keyMaps
   });
 
   if (options.toolbar !== false) {
-    this.createToolbar();
+    this.createToolbar(); // HERE.
   }
   if (options.status !== false) {
     this.createStatusbar();
@@ -211,18 +206,6 @@ Editor.prototype.createStatusbar = function(status) {
   return bar;
 };
 
-/**
- * Get or set the text content.
- */
-Editor.prototype.value = function(val) {
-  if (val) {
-    this.codemirror.getDoc().setValue(val);
-    return this;
-  } else {
-    return this.codemirror.getValue();
-  }
-};
-
 
 /**
  * Bind static methods for exports.
@@ -236,7 +219,6 @@ Editor.drawLink = drawLink;
 Editor.drawImage = drawImage;
 Editor.undo = undo;
 Editor.redo = redo;
-Editor.togglePreview = togglePreview;
 Editor.toggleFullScreen = toggleFullScreen;
 
 /**
@@ -268,9 +250,6 @@ Editor.prototype.undo = function() {
 };
 Editor.prototype.redo = function() {
   redo(this);
-};
-Editor.prototype.togglePreview = function() {
-  togglePreview(this);
 };
 Editor.prototype.toggleFullScreen = function() {
   toggleFullScreen(this);

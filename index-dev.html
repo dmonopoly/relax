@@ -94,7 +94,8 @@ $(document).ready(function() {
 		content = localStorage[prefix];
 	}
 
-	myEditor = new Editor();
+	// myEditor = new Editor();
+    myEditor = new Editor({tools: false});
 	myEditor.render();
 	myEditor.codemirror.setValue(content);
 

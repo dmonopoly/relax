@@ -37,7 +37,7 @@
 		<div class="fg10">
 			<div class="editor-wrapper">
 				<form action="" id="editor">
-				<textarea placeholder="Please relax and type away..."></textarea>
+				<textarea id="editor-textarea" placeholder="Please relax and type away..."></textarea>
 				</form>
 			</div>
 		</div>
@@ -52,7 +52,7 @@
 				<p id="document-list"></p>
 			</div>
 			<hr>
-			<small class="notes">made with love by <a href="http://jehaisleprintemps.net">Bruno Bord</a> - &copy; 2014. Grab <a href="https://github.com/brunobord/relax">the source on Github</a>, inspired by the fantastic concept of <a href="http://noisli.com">Noisli.com</a></small>
+			<small class="notes">yadadad made with love by <a href="http://jehaisleprintemps.net">Bruno Bord</a> - &copy; 2014. Grab <a href="https://github.com/brunobord/relax">the source on Github</a>, inspired by the fantastic concept of <a href="http://noisli.com">Noisli.com</a></small>
 		</div>
 
 	</div>
@@ -67,7 +67,9 @@
 <script type="text/javascript" src="vendor/js/marked.min.js"></script>
 <script type="text/javascript" src="vendor/js/codemirror.min.js"></script>
 <script type="text/javascript" src="vendor/js/intro.min.js"></script>
-<script type="text/javascript" src="vendor/js/editor.min.js"></script>
+<!-- <script type="text/javascript" src="vendor/js/editor.min.js"></script> -->
+<script type="text/javascript" src="vendor/js/editor-before/editor.js"></script>
+<!-- <script type="text/javascript" src="vendor/js/editor.js"></script> -->
 <script src="static/js/load.min.js"></script>
 <script type="text/javascript">
 
@@ -94,7 +96,10 @@ $(document).ready(function() {
 		content = localStorage[prefix];
 	}
 
-	myEditor = new Editor();
+	// myEditor = new Editor();
+    myEditor = new Editor({
+        toolbar: false
+    });
 	myEditor.render();
 	myEditor.codemirror.setValue(content);
 
